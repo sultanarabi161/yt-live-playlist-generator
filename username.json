@@ -1,22 +1,22 @@
 [
   {
-    "name": "NASA Live",
-    "username": "@NASA",
+    "name": "Jamuna",
+    "username": "@JamunaTVbd",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
   },
   {
-    "name": "Bloomberg Global",
-    "username": "@BloombergGlobalNews",
+    "name": "EkattorTelevision",
+    "username": "@EkattorTelevision",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/9/97/Bloomberg_logo.svg"
   },
   {
-    "name": "Sky News",
-    "username": "@SkyNews",
+    "name": "dbcnewstv",
+    "username": "@dbcnewstv",
     "logo": "https://upload.wikimedia.org/wikipedia/en/2/23/Sky_news_logo_new.png"
   },
   {
-    "name": "Al Jazeera English",
-    "username": "@aljazeeraenglish",
+    "name": "KurulusOsmanUrdu",
+    "username": "@KurulusOsmanUrduatv",
     "logo": "https://upload.wikimedia.org/wikipedia/en/4/4c/Al_Jazeera_English_logo.png"
   }
 ]
