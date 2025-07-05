@@ -2,7 +2,7 @@ name: Update Playlist
 
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -12,25 +12,27 @@ jobs:
   update-playlist:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v4
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
-      - name: Install dependencies
+          python-version: 3.11
+
+      - name: Install Requests
         run: pip install requests
-      - name: Fetch API Key
-        id: fetch_key
-        run: |
-          API_KEY=\$(curl -s "https://m.xigzo.store/apikey.json" | jq -r '.api_key')
-          echo "API_KEY=\${API_KEY}" >> \$GITHUB_ENV
-      - name: Run script
+
+      - name: Run process.py
         run: python process.py
-        env:
-          YT_API_KEY: \${{ env.API_KEY }}
-      - name: Commit changes
+
+      - name: Commit and Push if Changed
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add playlist.m3u
-          git commit -m "🔄 Auto-updated playlist" || echo "No changes"
-          git push
+          git config --global user.name "sultanarabi161"
+          git config --global user.email "sultanarabi161@users.noreply.github.com"
+          if [[ `git status --porcelain` ]]; then
+            git add playlist.m3u
+            git commit -m "🔁 Auto-updated playlist.m3u"
+            git push
+          else
+            echo "✅ No changes to commit"
