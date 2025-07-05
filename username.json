@@ -1,22 +1,17 @@
 [
   {
-    "name": "Jamuna",
+    "name": "Jamuna TV",
     "username": "@JamunaTVbd",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/e5/NASA_logo.svg"
+    "logo": "https://i.ibb.co/0jQ7ZxT/jamuna.png"
   },
   {
-    "name": "EkattorTelevision",
+    "name": "Ekattor TV",
     "username": "@EkattorTelevision",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/9/97/Bloomberg_logo.svg"
+    "logo": "https://i.ibb.co/4Y3L7Jk/ekattor.png"
   },
   {
-    "name": "dbcnewstv",
+    "name": "DBC News",
     "username": "@dbcnewstv",
-    "logo": "https://upload.wikimedia.org/wikipedia/en/2/23/Sky_news_logo_new.png"
-  },
-  {
-    "name": "KurulusOsmanUrdu",
-    "username": "@KurulusOsmanUrduatv",
-    "logo": "https://upload.wikimedia.org/wikipedia/en/4/4c/Al_Jazeera_English_logo.png"
+    "logo": "https://i.ibb.co/0qJ7QyZ/dbc.png"
   }
 ]
