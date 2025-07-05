@@ -5,6 +5,9 @@ on:
     - cron: '0 * * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update-playlist:
     runs-on: ubuntu-latest
@@ -23,10 +26,15 @@ jobs:
       - name: Run process.py
         run: python process.py
 
-      - name: Commit and Push
+      - name: Commit and Push if Changed
         run: |
           git config --global user.name "Sultan Bot"
           git config --global user.email "sultan@users.noreply.github.com"
-          git add playlist.m3u
-          git commit -m "🔁 Auto-updated playlist.m3u"
-          git push
+          if [[ `git status --porcelain` ]]; then
+            git add playlist.m3u
+            git commit -m "🔁 Auto-updated playlist.m3u"
+            git push
+          else
+            echo "✅ No changes to commit"
+          fi
+        shell: bash
