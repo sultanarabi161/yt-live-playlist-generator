@@ -8,5 +8,105 @@
     "name": "Jamuna TV",
     "username": "@JamunaTelevision",
     "logo": "https://upload.wikimedia.org/wikipedia/en/8/86/Jamuna_TV_Logo.png"
+  },
+  {
+    "name": "Channel 24",
+    "username": "@Channel24bd",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/d/d4/Channel_24_Bangladesh_logo.png"
+  },
+  {
+    "name": "Independent TV",
+    "username": "@IndependentTelevision",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/d/d2/Independent_Television_Bangladesh_Logo.png"
+  },
+  {
+    "name": "ATN News",
+    "username": "@atnnewslive",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/f/f1/ATN_News_Logo.png"
+  },
+  {
+    "name": "News24",
+    "username": "@News24bdlive",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/f/f4/News24_BD_logo.png"
+  },
+  {
+    "name": "Somoy TV",
+    "username": "@somoynews",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/b/b8/Somoy_TV_Logo.png"
+  },
+  {
+    "name": "DBC News",
+    "username": "@DBCNews24",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/d/d3/DBC_News_Logo.png"
+  },
+  {
+    "name": "My TV",
+    "username": "@mytvbdonline",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/3/3d/My_TV_Bangladesh_Logo.png"
+  },
+  {
+    "name": "Bangla TV",
+    "username": "@BanglaTVUK",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/2/2b/Bangla_TV_logo.png"
+  },
+  {
+    "name": "Boishakhi TV",
+    "username": "@BoishakhiOnline",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/0/06/Boishakhi_TV_logo.png"
+  },
+  {
+    "name": "GTV",
+    "username": "@gtvsportsbd",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/4/43/Gazi_Television_Logo.png"
+  },
+  {
+    "name": "Nagorik TV",
+    "username": "@nagoriktvbd",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/d/d4/Nagorik_TV_Logo.png"
+  },
+  {
+    "name": "Desh TV",
+    "username": "@DeshTVLive",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/c/ce/Desh_TV_Logo.png"
+  },
+  {
+    "name": "RTV",
+    "username": "@rtvbdonline",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/f/f6/RTV_Bangladesh_logo.png"
+  },
+  {
+    "name": "Mohona TV",
+    "username": "@MohonaTelevision",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/f/f5/Mohona_TV_Logo.png"
+  },
+  {
+    "name": "Channel i",
+    "username": "@ChanneliTelevision",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/6/61/Channel_i_Logo.png"
+  },
+  {
+    "name": "Asian TV",
+    "username": "@asiantvbd",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/4/4d/Asian_TV_Logo.png"
+  },
+  {
+    "name": "SATV",
+    "username": "@SATVBangladesh",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/6/6b/SATV_Logo.png"
+  },
+  {
+    "name": "Islamic TV",
+    "username": "@IslamicTVBD",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/3/38/Islamic_TV_Bangladesh_Logo.png"
+  },
+  {
+    "name": "Channel 9",
+    "username": "@Channel9BD",
+    "logo": "https://upload.wikimedia.org/wikipedia/en/4/41/Channel_9_Bangladesh_Logo.png"
+  },
+  {
+    "name": "BTV World",
+    "username": "@btvworldbd",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/0/01/Bangladesh_Television_logo.svg"
   }
 ]
