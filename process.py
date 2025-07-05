@@ -1,46 +1,51 @@
 import requests
 import json
-import re
 from datetime import datetime
 
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0'
-}
-
+# Direct API key (for practice only)
+API_KEY = "AIzaSyDiCm4f3jeHF-pp6mlGttanJXC53D_Pvcs"
 PLAYLIST_FILE = "playlist.m3u"
 USERNAME_FILE = "username.json"
 
-def get_live_video_id(channel_handle):
+def fetch_youtube_data(url):
     try:
-        url = f"https://www.youtube.com/{channel_handle}/live"
-        r = requests.get(url, headers=HEADERS, timeout=10, allow_redirects=True)
-        final_url = r.url
-        match = re.search(r'v=([a-zA-Z0-9_-]{11})', final_url)
-        if match:
-            return match.group(1)
+        response = requests.get(url)
+        return response.json() if response.status_code == 200 else None
     except Exception as e:
-        print(f"Error fetching {channel_handle}: {e}")
-    return None
+        print(f"API Error: {e}")
+        return None
 
-def main():
-    with open(USERNAME_FILE, "r", encoding="utf-8") as f:
+def get_channel_id(username):
+    url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&q={username}&type=channel&key={API_KEY}"
+    data = fetch_youtube_data(url)
+    return data['items'][0]['id']['channelId'] if data and 'items' in data else None
+
+def get_live_video_id(channel_id):
+    url = f"https://www.googleapis.com/youtube/v3/search?part=snippet&channelId={channel_id}&eventType=live&type=video&key={API_KEY}"
+    data = fetch_youtube_data(url)
+    return data['items'][0]['id']['videoId'] if data and 'items' in data else None
+
+def generate_playlist():
+    with open(USERNAME_FILE) as f:
         channels = json.load(f)
 
-    m3u = "#EXTM3U\n"
-    for ch in channels:
-        video_id = get_live_video_id(ch["username"])
-        print(f"{ch['name']} → video_id: {video_id}")
+    m3u_content = ["#EXTM3U"]
+    
+    for channel in channels:
+        print(f"Processing: {channel['name']}")
+        channel_id = get_channel_id(channel["username"].lstrip("@"))
+        video_id = get_live_video_id(channel_id) if channel_id else None
+        
         if video_id:
-            name = ch["name"]
-            logo = ch["logo"]
-            stream_url = f"https://m.xigzo.store/yt/live.php?video_id={video_id}"
-            m3u += f"#EXTINF:-1 tvg-logo=\"{logo}\",{name}\n{stream_url}\n"
+            m3u_content.append(
+                f'#EXTINF:-1 tvg-logo="{channel["logo"]}",{channel["name"]}\n'
+                f'https://m.xigzo.store/yt/live.php?video_id={video_id}'
+            )
 
-    m3u += f"\n# Auto-updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
-    m3u += "# Note: Use in media player like VLC. Not supported in browser.\n"
-
-    with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
-        f.write(m3u)
+    m3u_content.append(f"\n# Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    with open(PLAYLIST_FILE, "w") as f:
+        f.write("\n".join(m3u_content))
 
 if __name__ == "__main__":
-    main()
+    generate_playlist()
