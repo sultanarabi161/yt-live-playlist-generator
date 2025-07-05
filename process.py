@@ -4,25 +4,23 @@ import re
 from datetime import datetime
 
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/114.0.0.0 Safari/537.36'
+    'User-Agent': 'Mozilla/5.0'
 }
 
 PLAYLIST_FILE = "playlist.m3u"
 USERNAME_FILE = "username.json"
 
-
 def get_live_video_id(channel_handle):
-    url = f"https://www.youtube.com/{channel_handle}/live"
     try:
-        html = requests.get(url, headers=HEADERS, timeout=10).text
-        match = re.search(r'<meta property="og:url" content="https://www.youtube.com/watch\?v=([^"]+)', html)
+        url = f"https://www.youtube.com/{channel_handle}/live"
+        r = requests.get(url, headers=HEADERS, timeout=10, allow_redirects=True)
+        final_url = r.url
+        match = re.search(r'v=([a-zA-Z0-9_-]{11})', final_url)
         if match:
             return match.group(1)
     except Exception as e:
         print(f"Error fetching {channel_handle}: {e}")
-        return None
     return None
-
 
 def main():
     with open(USERNAME_FILE, "r", encoding="utf-8") as f:
@@ -31,6 +29,7 @@ def main():
     m3u = "#EXTM3U\n"
     for ch in channels:
         video_id = get_live_video_id(ch["username"])
+        print(f"{ch['name']} → video_id: {video_id}")
         if video_id:
             name = ch["name"]
             logo = ch["logo"]
@@ -42,7 +41,6 @@ def main():
 
     with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
         f.write(m3u)
-
 
 if __name__ == "__main__":
     main()
