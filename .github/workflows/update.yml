@@ -2,7 +2,7 @@ name: Update Playlist
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # Updates every 30 minutes
+    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -16,14 +16,21 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.11"
-      - run: pip install requests python-dotenv
-      - run: python process.py
-        env:
-          YT_API_KEY: ${{ secrets.YT_API_KEY }}
-      - name: Commit Changes
+      - name: Install dependencies
+        run: pip install requests
+      - name: Fetch API Key
+        id: fetch_key
         run: |
-          git config --global user.name "sultanarabi161"
-          git config --global user.email "sultanarabi161@github.com"
+          API_KEY=\$(curl -s "https://m.xigzo.store/apikey.json" | jq -r '.api_key')
+          echo "API_KEY=\${API_KEY}" >> \$GITHUB_ENV
+      - name: Run script
+        run: python process.py
+        env:
+          YT_API_KEY: \${{ env.API_KEY }}
+      - name: Commit changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
           git add playlist.m3u
           git commit -m "🔄 Auto-updated playlist" || echo "No changes"
           git push
