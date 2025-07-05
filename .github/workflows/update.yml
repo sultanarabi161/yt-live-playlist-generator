@@ -2,7 +2,7 @@ name: Update Playlist
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/30 * * * *'  # Updates every 30 minutes
   workflow_dispatch:
 
 permissions:
@@ -12,29 +12,16 @@ jobs:
   update-playlist:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          python-version: 3.11
-
-      - name: Install Dependencies
-        run: pip install requests
-
-      - name: Run process.py
-        run: python process.py
-
-      - name: Commit and Push if Changed
+          python-version: "3.11"
+      - run: pip install requests
+      - run: python process.py
+      - name: Commit Changes
         run: |
-          git config --global user.name "sultanarabi161"
-          git config --global user.email "sultanarabi161@users.noreply.github.com"
-          if [[ `git status --porcelain` ]]; then
-            git add playlist.m3u
-            git commit -m "🔁 Auto-updated playlist.m3u"
-            git push
-          else
-            echo "✅ No changes to commit"
-          fi
-        shell: bash
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add playlist.m3u
+          git commit -m "🔄 Auto-updated playlist" || echo "No changes"
+          git push
