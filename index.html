@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube Live M3U Playlist</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { background: #000; color: #eee; font-family: sans-serif; text-align: center; padding: 40px; }
+    .link { font-size: 18px; color: #0af; margin-top: 10px; word-break: break-word; }
+    .btn { background: #4CAF50; color: #fff; padding: 10px 20px; border: none; cursor: pointer; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <h1>🔴 YouTube Live M3U Playlist</h1>
+  <p>Use this link below in any media player:</p>
+  <div class="link" id="link">https://sultanarabi161.github.io/yt-live-playlist/playlist.m3u</div>
+  <br>
+  <button class="btn" onclick="copy()">📋 Copy M3U Link</button>
+  <p style="margin-top: 20px;">Auto-updated every hour via GitHub Actions</p>
+
+  <script>
+    function copy() {
+      const text = document.getElementById("link").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("✅ Link copied!");
+      });
+    }
+  </script>
+</body>
+</html>
