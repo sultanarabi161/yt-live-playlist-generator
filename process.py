@@ -1,9 +1,12 @@
+import os
 import requests
 import json
 from datetime import datetime
+from dotenv import load_dotenv
 
-# Direct API key (for practice only)
-API_KEY = "AIzaSyDiCm4f3jeHF-pp6mlGttanJXC53D_Pvcs"
+# Load environment variables
+load_dotenv()
+API_KEY = os.getenv("YT_API_KEY")
 PLAYLIST_FILE = "playlist.m3u"
 USERNAME_FILE = "username.json"
 
@@ -39,12 +42,13 @@ def generate_playlist():
         if video_id:
             m3u_content.append(
                 f'#EXTINF:-1 tvg-logo="{channel["logo"]}",{channel["name"]}\n'
-                f'https://m.xigzo.store/yt/live.php?video_id={video_id}'
+                f'https://youtube.com/watch?v={video_id}'
             )
 
     m3u_content.append(f"\n# Updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    m3u_content.append("# Generated with YouTube Live Playlist Generator")
     
-    with open(PLAYLIST_FILE, "w") as f:
+    with open(PLAYLIST_FILE, "w", encoding='utf-8') as f:
         f.write("\n".join(m3u_content))
 
 if __name__ == "__main__":
